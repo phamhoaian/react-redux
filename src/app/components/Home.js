@@ -13,6 +13,35 @@ export class Home extends React.Component {
         status: 1
       })
     }, 3000);
+    console.log('constructor');
+  }
+
+  componentWillMount() {
+    console.log('component will mount');
+  }
+
+  componentDidMount() {
+    console.log('component did mount');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('component will receive props', nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('should component update', nextProps, nextState);
+    if (nextState.status === 1) {
+      return false;
+    }
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('compoent will update', nextProps, nextState);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('component did update', prevProps, prevState);
   }
 
   onMakeOlder() {
