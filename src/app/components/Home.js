@@ -6,7 +6,11 @@ export class Home extends React.Component {
     super(props);
     this.state = {
       age: props.age,
-      status: 0
+      status: 0,
+      user: {
+        name: "Anna",
+        hobbies: ["Sports", "Music"]
+      }
     }
     setTimeout(() => {
       this.setState({
@@ -28,14 +32,6 @@ export class Home extends React.Component {
     console.log('component will receive props', nextProps);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('should component update', nextProps, nextState);
-    if (nextState.status === 1) {
-      return false;
-    }
-    return true;
-  }
-
   componentWillUpdate(nextProps, nextState) {
     console.log('compoent will update', nextProps, nextState);
   }
@@ -48,24 +44,35 @@ export class Home extends React.Component {
     this.setState({age: this.state.age + 1})
   }
 
+  onGreat() {
+    alert('Great!');
+  }
+  onChangeMount() {
+    this.setState({
+      homeMounted: !this.state.homeMounted
+    })
+  }
+
   render() {
     return (
       <div>
         <br/>
         <p>In a new component!</p>
         <p>Your name is {this.props.name}, your age is {this.state.age}</p>
-        <p>User Object => Name: {this.props.user.name}</p>
+        <p>User Object => Name: {this.state.user.name}</p>
         <p>State: {this.state.status}</p>
         <div>
           <h4>Hobbies:</h4>
           <ul>
-            {this.props.user.hobbies.map((hobby, i) => <li key={i}>{hobby}</li>)}
+            {this.state.user.hobbies.map((hobby, i) => <li key={i}>{hobby}</li>)}
           </ul>
         </div>
         <hr/>
         <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary">Make me older</button>
         <hr/>
-        <button onClick={this.props.great} className="btn btn-success">Great</button>
+        <button onClick={this.onGreat} className="btn btn-success">Great</button>
+        <hr/>
+        <button className="btn btn-primary" onClick={this.onChangeMount.bind(this)}>(Un)Mount Home Component</button>
       </div>
     );
   }
