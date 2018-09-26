@@ -5,7 +5,8 @@ export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      age: props.age,
+      name: "Pham An",
+      age: 27,
       status: 0,
       user: {
         name: "Anna",
@@ -58,7 +59,7 @@ export class Home extends React.Component {
       <div>
         <br/>
         <p>In a new component!</p>
-        <p>Your name is {this.props.name}, your age is {this.state.age}</p>
+        <p>Your name is {this.state.name}, your age is {this.state.age}</p>
         <p>User Object => Name: {this.state.user.name}</p>
         <p>State: {this.state.status}</p>
         <div>
